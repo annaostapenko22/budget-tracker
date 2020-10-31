@@ -1,20 +1,28 @@
-class Invoice {
-    // class fileds
-    readonly client: string;
-    private details: string;
-    public amount: number;
+interface IsPerson {
+    name: string;
+    age: number;
+    speak(a: string): void;
+    spend(a: number): number;
+}
 
-    constructor(c: string, d: string, a: number) {
-        // what counstructor receives and assign to fields
-        this.client = c;
-        this.details = d;
-        this.amount = a;
-    }
-
-    format() {
-        return `${this.client} owes $${this.amount} for ${this.details}`
+const me: IsPerson = {
+    name: "Anna", age: 22,
+    speak(text: string): void {
+        console.log("text", text)
+    },
+    spend(amount: number): number {
+        console.log("am", amount)
+        return amount;
     }
 }
+const greetPerson = (person: IsPerson)=> {
+    console.log("person", person)
+}
+
+
+console.log("me", me)
+
+import { Invoice } from "./classes/invoice.js";
 
 const invOne = new Invoice('anna', "work on work", 250)
 const invTwo = new Invoice('alyona', "work in kiev", 250)

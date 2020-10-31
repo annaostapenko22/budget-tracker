@@ -1,16 +1,18 @@
-"use strict";
-var Invoice = /** @class */ (function () {
-    function Invoice(c, d, a) {
-        // what counstructor receives and assign to fields
-        this.client = c;
-        this.details = d;
-        this.amount = a;
+var me = {
+    name: "Anna", age: 22,
+    speak: function (text) {
+        console.log("text", text);
+    },
+    spend: function (amount) {
+        console.log("am", amount);
+        return amount;
     }
-    Invoice.prototype.format = function () {
-        return this.client + " owes $" + this.amount + " for " + this.details;
-    };
-    return Invoice;
-}());
+};
+var greetPerson = function (person) {
+    console.log("person", person);
+};
+console.log("me", me);
+import { Invoice } from "./classes/invoice.js";
 var invOne = new Invoice('anna', "work on work", 250);
 var invTwo = new Invoice('alyona', "work in kiev", 250);
 console.log(invOne, invTwo);

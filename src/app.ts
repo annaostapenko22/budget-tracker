@@ -1,26 +1,19 @@
-class Invoice {
-    // class fileds
-    readonly client: string;
-    private details: string;
-    public amount: number;
+import { Invoice } from "./classes/invoice.js";
+import { Payment } from "./classes/Payment.js";
+import { HasFormatter } from "./interfaces/HasFormatter";
 
-    constructor(c: string, d: string, a: number) {
-        // what counstructor receives and assign to fields
-        this.client = c;
-        this.details = d;
-        this.amount = a;
-    }
+let docOne: HasFormatter;
+let docTwo: HasFormatter;
 
-    format() {
-        return `${this.client} owes $${this.amount} for ${this.details}`
-    }
-}
+docOne = new Invoice("youshi", "wed", 250);
+docTwo = new Payment("anna", "wed", 250);
 
-const invOne = new Invoice('anna', "work on work", 250)
-const invTwo = new Invoice('alyona', "work in kiev", 250)
-console.log(invOne, invTwo)
-let invoices: Invoice[] = [];
-invoices.push(invOne)
+let docs: HasFormatter[] = [];
+
+docs.push(docOne);
+docs.push(docTwo);
+console.log("docs", docs)
+
 const form = document.querySelector(".new-item-form") as HTMLFormElement;
 const type = document.querySelector("#type") as HTMLSelectElement;
 const tofrom = document.querySelector("#tofrom") as HTMLInputElement;
@@ -30,6 +23,13 @@ const amount = document.querySelector("#amount") as HTMLInputElement;
 form.addEventListener("submit", (e: Event) => {
     e.preventDefault()
 
-    console.log(type.value,
-        amount.valueAsNumber)
+    let doc: HasFormatter;
+
+    if (type.value === "invoice") {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
+    } else {
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber)
+    }
+
+    console.log("doc", doc)
 })
